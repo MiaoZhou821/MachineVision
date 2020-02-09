@@ -1,0 +1,16 @@
+For this task, before we implementing our model, we did some data preprocessing. 
+1. We rotate the image randomly between -10 degree and +10 degree.
+2. With probability of 50%, we flip the image. 
+3. We randomly crop the image. 
+4. We randomly pad the image. 
+5. We randomly scale the image between 0.5 and 2. 
+6. We blur the image with a gaussian filter with 50% chance. 
+
+The model we use for this task is Resnet 152 pretrained on Imagenet. However, we try to freeze layers till layer3 in Resnet 152, to get higher accuracy. 
+Loss we use for this is nn.MultiLabelSoftMarginLoss(). And the optimization method is optim.SGD with step-wise learning rate. 
+For the first 1-25 epochs, learning rate is 0.1; for the 26-50 epochs, we use 0.01 for our learning rate. After running 50 epochs, we found after 40 epochs, 
+the total loss of our model is around 0.0103 and accuracy is around 0.7769, so we conclude that it converges around 40 epochs. 
+
+For novelty, we use freezing layers to achieve higher precision and we use stepwise learning rate to adjust learning rate after running a lot of epochs to avoid overfitting.
+
+ 
